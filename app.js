@@ -1,4 +1,4 @@
-//遍历数组
+//遍历数组 forEach
 
     // var colors = ["red","blue","green"];
 
@@ -41,7 +41,7 @@
 
 
 
-//数组方法
+//数组方法 map
 
     /**场景1
      * 
@@ -78,12 +78,91 @@
      * 假定有一个对象数组（A）,将A数组中对象某个属性的值存储到B数组中
      */
 
-     var cars = [
-         {model:"Buick",price:"cheap"},
-         {model:"BMW",price:"expensive"}
+    //  var cars = [
+    //      {model:"Buick",price:"cheap"},
+    //      {model:"BMW",price:"expensive"}
+    //  ];
+
+    //  var prices = cars.map((car) => {
+    //      return car.price;
+    //  });
+    //  console.log(prices);
+
+
+
+
+
+//数组方法 filter
+
+    /**场景1
+     * 
+     * 假定有一个对象数组（A）,获取数组中指定类型的对象放到B数组中
+     */
+
+    //  var products = [
+    //      {name:"cucumber",type:"vegetable"},
+    //      {name:"banana",type:"fruit"},
+    //      {name:"celery",type:"vegetable"},
+    //      {name:"orange",type:"fruit"}
+    //  ];
+
+    //  //es5
+    //  var filteredProducts = [];
+    //  for(var i=0; i<products.length; i++){
+    //      if(products[i].type === "fruit"){
+    //          filteredProducts.push(products[i]);
+    //      }
+    //  }
+    //  console.log(filteredProducts);
+
+
+    // //es6 filter
+    // var filteredProducts = products.filter((product) => {
+    //     return product.type === "fruit";
+    // });
+    // console.log(filteredProducts);
+
+
+
+    /**场景2
+     * 
+     * 假定有一个对象数组（A）,过滤掉不满足以下条件的对象
+     * 条件：蔬菜，数量大于0，价格小于10
+     */
+
+    //  var products = [
+    //      {name:"cucumber",type:"vegetable",quantity:0,price:1},
+    //      {name:"banana",type:"fruit",quantity:10,price:16},
+    //      {name:"celery",type:"vegetable",quantity:30,price:8},
+    //      {name:"orange",type:"fruit",quantity:3,price:6}
+    //  ];
+
+    //  products = products.filter((product) => {
+    //      return product.type === "vegetable"
+    //      && product.quantity > 0
+    //      && product.price < 10;
+    //  });
+
+    //  console.log(products);
+
+
+    /**场景3
+     * 
+     * 假定有两个数组（A,B），根据A中id值，过滤掉B数组不符合的数据
+     */
+
+     var post = {id:4,title:"Jaascript"};
+     var comments = [
+         {postId:4,content:"Angular4"},
+         {postId:2,content:"Vue.js"},
+         {postId:3,content:"Node.js"},
+         {postId:4,content:"React.js"}
      ];
 
-     var prices = cars.map((car) => {
-         return car.price;
-     });
-     console.log(prices);
+     function commentsForPost(post,comments){
+        return comments.filter((comment) => {
+            return comment.postId == post.id;
+        });
+     }
+     console.log(commentsForPost(post,comments));
+
