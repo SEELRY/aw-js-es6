@@ -276,39 +276,103 @@
      * 假定有一个注册页面，判断所有input内容的长度是否大于0
      */
 
-    function Field(value){
-        this.value = value;
-    }
+    // function Field(value){
+    //     this.value = value;
+    // }
 
-    Field.prototype.validate = function(){
-        return this.value.length > 0;
-    }
-
-
-    var username = new Field("Arthur");
-    var telephone = new Field("18899955666");
-    var password = new Field("123456")
-    // console.log(username.validate());
-    // console.log(telephone.validate());
-    // console.log(password.validate());
-
-    console.log(username.validate() && telephone.validate() && password.validate());
-
-    var fields = [username,telephone,password];
-    var formIsValid = fields.every((field) => {
-        return field.validate();
-    });
-    console.log(formIsValid);
-
-    if(formIsValid){
-        //注册成功！
-    }else{
-        //给用户错误提醒
-    }
+    // Field.prototype.validate = function(){
+    //     return this.value.length > 0;
+    // }
 
 
+    // var username = new Field("Arthur");
+    // var telephone = new Field("18899955666");
+    // var password = new Field("123456")
+    // // console.log(username.validate());
+    // // console.log(telephone.validate());
+    // // console.log(password.validate());
+
+    // console.log(username.validate() && telephone.validate() && password.validate());
+
+    // var fields = [username,telephone,password];
+    // var formIsValid = fields.every((field) => {
+    //     return field.validate();
+    // });
+    // console.log(formIsValid);
+
+    // if(formIsValid){
+    //     //注册成功！
+    // }else{
+    //     //给用户错误提醒
+    // }
 
 
+
+
+
+//数组方法(reduce)
+    
+    /**场景1
+     *
+     * 计算数组中所有值的总和 
+     */
+
+    // var numbers = [10,20,30];
+    // var sum = 0;
+
+    // // //es5
+    // // for(var i=0; i<numbers.length; i++){
+    // //     sum += numbers[i];
+    // // }
+    // // console.log(sum);
+
+    
+    // //es6
+    // var sumValue = numbers.reduce(function(total,number){
+    //     return total + number;
+    // },0);
+    // console.log(sumValue);
+
+    
+    
+
+    /**场景2
+     * 
+     * 将数组中对象的某个属性抽离到另外一个数组中
+     */
+
+    // var primaryColors = [
+    //     {color:"red"},
+    //     {color:"yellow"},
+    //     {color:"blue"}
+    // ];
+
+    // var colorValue = primaryColors.reduce((previous,primaryColor) => {
+    //     previous.push(primaryColor.color);
+    //     return previous;
+    // },[]);
+    // console.log(colorValue);
+
+
+
+
+    /**场景3
+     * 
+     * 判断字符串中括号是否对称
+     */
+
+    //  function balancedParens(string){
+    //     return !string.split("").reduce(function(previous,char){
+    //         if(previous < 0){return previous;}
+    //         if(char == "("){return ++previous;}
+    //         if(char == ")"){return --previous;}
+    //         return previous;
+    //     },0);
+    //  }
+    //  console.log(balancedParens(")(()()"));
+
+
+     
 
 
 
