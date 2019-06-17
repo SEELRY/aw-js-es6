@@ -1,55 +1,24 @@
-// var let const
+/**
+ * 模板字符串
+ */
 
-// var a = "Test1";
-// let b = "Test2";
+//  let template = '<h1>Hello World!</h1><p>ES6语法展示的内容</p>';
 
-// function testVar(){
-//     var a = 30;
-//     if(true){
-//         var a = 50;
-//         console.log(a);
-//     }
-//     console.log(a);
-// }
-// testVar(); //50  50
+let name = "Arthur"
+function makeUpperCase(word){
+    return word.toUpperCase();
+}
 
-// function testLet(){
-//     let a = 30;
-//     if(true){
-//         let a = 50;
-//         console.log(a);
-//     }
-//     console.log(a);
-// }
-// testLet(); //50  30
-
-
-
-// {
-//     let b = 100;
-// }
-// console.log(b);  //b is not defined
-
-
-//使用场景
-
-// for(var i=0; i<10; i++){
-//     console.log(i);
-// }
-// console.log(i); //10
-
-// for (let i = 0; i < 10; i++) {
-//     console.log(i);
-// }
-// console.log(i); // i is not defined
-
-
-
-// const 常量
-
-// const x = 10;
-// x = 100; //Assignment to constant variable.
-
-const colors = ["red","blue","green"];
-colors.push("yellow");
-console.log(colors);
+let template = 
+`
+<h1>${makeUpperCase('Hello')} , ${name}</h1>
+<p>ES6语法展示的内容</p>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+`;
+ document.getElementById('template').innerHTML = template
