@@ -151,18 +151,71 @@
      * 假定有两个数组（A,B），根据A中id值，过滤掉B数组不符合的数据
      */
 
-     var post = {id:4,title:"Jaascript"};
-     var comments = [
-         {postId:4,content:"Angular4"},
-         {postId:2,content:"Vue.js"},
-         {postId:3,content:"Node.js"},
-         {postId:4,content:"React.js"}
-     ];
+    //  var post = {id:4,title:"Jaascript"};
+    //  var comments = [
+    //      {postId:4,content:"Angular4"},
+    //      {postId:2,content:"Vue.js"},
+    //      {postId:3,content:"Node.js"},
+    //      {postId:4,content:"React.js"}
+    //  ];
 
-     function commentsForPost(post,comments){
-        return comments.filter((comment) => {
-            return comment.postId == post.id;
-        });
-     }
-     console.log(commentsForPost(post,comments));
+    //  function commentsForPost(post,comments){
+    //     return comments.filter((comment) => {
+    //         return comment.postId == post.id;
+    //     });
+    //  }
+    //  console.log(commentsForPost(post,comments));
 
+
+
+
+// 数组方法(find)
+
+/**场景1
+ * 
+ * 假定有一个对象数组(A)，找到符合条件的对象
+ */
+
+// var users = [
+//     {name:"Jill",id:1},
+//     {name:"Alex",id:2},
+//     {name:"Bill",id:3},
+//     {name:"Alex",id:4}
+// ];
+
+// // es5
+// var user;
+// for(var i=0; i<users.length; i++){
+//     if(users[i].name === "Alex"){
+//         user = users[i];
+//         break;
+//     }
+// }
+// console.log(user);
+
+// //es6 find
+// //好处是找到第一个后就不会继续执行后面的对象，节省效率
+// user = users.find((u) => {
+//     return u.name === "Alex";
+// });
+// console.log(user);
+
+
+/**场景2
+ * 
+ * 假定有一个对象数组(A)，根据指定对象的条件找到数组中符合条件的对象
+ */
+
+//  var posts = [
+//      {id:1,title:"Node.js"},
+//      {id:2,title:"React.js"}
+//  ];
+
+//  var comment = {postId:1,content:"Hello World!"};
+
+//  function postForComment(posts,comment){
+//     return posts.find((post) => {
+//         return post.id === comment.postId;
+//     });
+//  }
+//  console.log(postForComment(posts,comment));
