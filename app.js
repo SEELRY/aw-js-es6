@@ -171,51 +171,146 @@
 
 // 数组方法(find)
 
-/**场景1
- * 
- * 假定有一个对象数组(A)，找到符合条件的对象
- */
+    /**场景1
+     * 
+     * 假定有一个对象数组(A)，找到符合条件的对象
+     */
 
-// var users = [
-//     {name:"Jill",id:1},
-//     {name:"Alex",id:2},
-//     {name:"Bill",id:3},
-//     {name:"Alex",id:4}
-// ];
+    // var users = [
+    //     {name:"Jill",id:1},
+    //     {name:"Alex",id:2},
+    //     {name:"Bill",id:3},
+    //     {name:"Alex",id:4}
+    // ];
 
-// // es5
-// var user;
-// for(var i=0; i<users.length; i++){
-//     if(users[i].name === "Alex"){
-//         user = users[i];
-//         break;
-//     }
-// }
-// console.log(user);
+    // // es5
+    // var user;
+    // for(var i=0; i<users.length; i++){
+    //     if(users[i].name === "Alex"){
+    //         user = users[i];
+    //         break;
+    //     }
+    // }
+    // console.log(user);
 
-// //es6 find
-// //好处是找到第一个后就不会继续执行后面的对象，节省效率
-// user = users.find((u) => {
-//     return u.name === "Alex";
-// });
-// console.log(user);
+    // //es6 find
+    // //好处是找到第一个后就不会继续执行后面的对象，节省效率
+    // user = users.find((u) => {
+    //     return u.name === "Alex";
+    // });
+    // console.log(user);
 
 
-/**场景2
- * 
- * 假定有一个对象数组(A)，根据指定对象的条件找到数组中符合条件的对象
- */
+    /**场景2
+     * 
+     * 假定有一个对象数组(A)，根据指定对象的条件找到数组中符合条件的对象
+     */
 
-//  var posts = [
-//      {id:1,title:"Node.js"},
-//      {id:2,title:"React.js"}
-//  ];
+    //  var posts = [
+    //      {id:1,title:"Node.js"},
+    //      {id:2,title:"React.js"}
+    //  ];
 
-//  var comment = {postId:1,content:"Hello World!"};
+    //  var comment = {postId:1,content:"Hello World!"};
 
-//  function postForComment(posts,comment){
-//     return posts.find((post) => {
-//         return post.id === comment.postId;
-//     });
-//  }
-//  console.log(postForComment(posts,comment));
+    //  function postForComment(posts,comment){
+    //     return posts.find((post) => {
+    //         return post.id === comment.postId;
+    //     });
+    //  }
+    //  console.log(postForComment(posts,comment));
+
+
+
+
+
+//数组方法(every  some)
+
+    /**场景1
+     * 
+     * 计算对象数组中每个电脑的操作系统是否可用，
+     * 大于16位操作系统表示可用，否则不可用
+     */
+
+    /**说明：
+     * every:有假即假
+     * some:有真即真
+     */
+    
+    // var computers = [
+    //     {name:"Apple",ram:16},
+    //     {name:"IBM",ram:4},
+    //     {name:"Acer",ram:32},
+    // ];
+
+    // //es5
+    // var everyComputerCanRunProgram = true;
+    // var someComputerCanRunProgram = false;
+
+    // for(var i=0; i<computers.length; i++){
+    //     var computer = computers[i];
+    //     if(computer.ram < 16){
+    //         everyComputerCanRunProgram = false;
+    //     }else{
+    //         someComputerCanRunProgram = true;
+    //     }
+    // }
+    // console.log(everyComputerCanRunProgram);
+    // console.log(someComputerCanRunProgram);
+    
+
+    // //es6
+    // var every = computers.every((computer) => {
+    //     return computer.ram > 16;
+    // });
+    // console.log(every);
+
+    // var some = computers.some((computer) => {
+    //     return computer.ram > 16;
+    // });
+    // console.log(some);
+
+
+    /**场景2
+     * 
+     * 假定有一个注册页面，判断所有input内容的长度是否大于0
+     */
+
+    function Field(value){
+        this.value = value;
+    }
+
+    Field.prototype.validate = function(){
+        return this.value.length > 0;
+    }
+
+
+    var username = new Field("Arthur");
+    var telephone = new Field("18899955666");
+    var password = new Field("123456")
+    // console.log(username.validate());
+    // console.log(telephone.validate());
+    // console.log(password.validate());
+
+    console.log(username.validate() && telephone.validate() && password.validate());
+
+    var fields = [username,telephone,password];
+    var formIsValid = fields.every((field) => {
+        return field.validate();
+    });
+    console.log(formIsValid);
+
+    if(formIsValid){
+        //注册成功！
+    }else{
+        //给用户错误提醒
+    }
+
+
+
+
+
+
+
+
+
