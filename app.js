@@ -1,109 +1,66 @@
 /**
- * 增强对象字面量
- * 解决的问题：缩减代码
+ * 函数参数默认值
+ * 优化代码
  * 
  * 
  */
 
-    // //创建对象
-    // new Object();
-    // {};
-
-    // //创建数组
-    // new Array();
-    // [];
-
+// function makeAjaxRequest(url,method){
+//     if(!method){
+//         method = "GET";
+//     }
+//     return method;
+// }
 
 
-    // function createBookShop(inventory){
-    //     return {
-    //         inventory:inventory,
-    //         //图书价格的总和
-    //         inventoryValue:function(){
-    //             return this.inventory.reduce((total,book) => {
-    //                 return total + book.price;
-    //             },0);
-                
-    //         },
-    //         //根据标题返回价格
-    //         priceForTitle:function(title){
-    //             return this.inventory.find((book) => {
-    //                 return book.title === title;
-    //             })
-    //             .price;
-    //         }
-            
-    //     }
-    // }
-    // const inventory = [
-    //     {title:"Vue",price:10},
-    //     {title:"Angular",price:15},
-    //     {title:"React",price:13}
-    // ];
-    // const bookShop = createBookShop(inventory);
+// function makeAjaxRequest(url,method = "GET"){
+//     return method;
+// }
 
-    // console.log(bookShop.inventoryValue());
-    // console.log(bookShop.priceForTitle("Angular"));
+// console.log(makeAjaxRequest("google.com"));
+// console.log(makeAjaxRequest("google.com","POST"));
 
 
 
 
-    // //增强字面量
-    // function createBookShop(inventory) {
-    //     return {
-    //         inventory,
-    //         //图书价格的总和
-    //         inventoryValue() {
-    //             return this.inventory.reduce((total, book) => {
-    //                 return total + book.price;
-    //             }, 0);
 
-    //         },
-    //         //根据标题返回价格
-    //         priceForTitle(title) {
-    //             return this.inventory.find((book) => {
-    //                 return book.title === title;
-    //             })
-    //                 .price;
-    //         }
+// function User(id){
+//     this.id = id;
+// }
+// // console.log(new User(1));
 
-    //     }
-    // }
-    // const inventory = [
-    //     { title: "Vue", price: 10 },
-    //     { title: "Angular", price: 15 },
-    //     { title: "React", price: 13 }
-    // ];
-    // const bookShop = createBookShop(inventory);
+// function randomId(){
+//     return Math.round(Math.random() * 9);
+// }
+// // console.log(new User(randomId()));
 
-    // console.log(bookShop.inventoryValue());
-    // console.log(bookShop.priceForTitle("Angular"));
+// function createAdminUser(user){
+//     user.admin = true;
+//     return user;
+// }
+
+// console.log(createAdminUser(new User(randomId())));
 
 
 
 
-    //JQuery 普通写法
-    function saveFile(url,data){
-        $.ajax({
-            method:"POST",
-            url:url,
-            data:data
-        });
-    }
-    const url = "http://fileupload.com";
-    const data = {color:"red"};
 
-    saveFile(url,data);
+function User(id) {
+    this.id = id;
+}
+// console.log(new User(1));
 
-    //JQuery 增强对象字面量
-    function saveFile(url, data) {
-        $.ajax({
-            url,
-            data,
-            method: "POST"
-        });
-    }
-    const url = "http://fileupload.com";
-    const data = { color: "red" };
+function randomId() {
+    return Math.round(Math.random() * 9);
+}
+// console.log(new User(randomId()));
 
-    saveFile(url, data);
+function createAdminUser(user = new User(randomId())) {
+    user.admin = true;
+    return user;
+}
+
+const user = new User(1);   
+
+console.log(createAdminUser(user))  //传递参数默认值则显示参数默认值
+console.log(createAdminUser());     //不传参数默认值则不显示
