@@ -1,76 +1,109 @@
 /**
- * 箭头函数
- * 1.缩减代码
- * 2.改变this指向
+ * 增强对象字面量
+ * 解决的问题：缩减代码
+ * 
+ * 
  */
 
+    // //创建对象
+    // new Object();
+    // {};
 
-//  //es5
-//  const double = function(number){
-//     return number * 2;
-//  }
-//  console.log(double(20));
-
-// // es6
-// const double = (number) => {
-//     return number * 2;
-// }
-// console.log(double(20));
-
-// const double = (number) => number * 2;  //去掉return
-// console.log(double(20));
-
-
-// //map一个数组，让数组中的值以double形式展示
-// const numbers = [1,2,3];
-// var newNumbers = numbers.map((number) => {
-//     return number * 2;
-// });
-// console.log(newNumbers);
+    // //创建数组
+    // new Array();
+    // [];
 
 
 
+    // function createBookShop(inventory){
+    //     return {
+    //         inventory:inventory,
+    //         //图书价格的总和
+    //         inventoryValue:function(){
+    //             return this.inventory.reduce((total,book) => {
+    //                 return total + book.price;
+    //             },0);
+                
+    //         },
+    //         //根据标题返回价格
+    //         priceForTitle:function(title){
+    //             return this.inventory.find((book) => {
+    //                 return book.title === title;
+    //             })
+    //             .price;
+    //         }
+            
+    //     }
+    // }
+    // const inventory = [
+    //     {title:"Vue",price:10},
+    //     {title:"Angular",price:15},
+    //     {title:"React",price:13}
+    // ];
+    // const bookShop = createBookShop(inventory);
+
+    // console.log(bookShop.inventoryValue());
+    // console.log(bookShop.priceForTitle("Angular"));
 
 
-//改变this指向
 
-    // es5
-    const team = {
-        members:["Henry","Elyse"],
-        teamName:"es5",
-        teamSummary:function(){
-            let _this = this;
-            return this.members.map(function(member){
-                return `${member}隶属于${_this.teamName}小组`;
-            });
-        }
+
+    // //增强字面量
+    // function createBookShop(inventory) {
+    //     return {
+    //         inventory,
+    //         //图书价格的总和
+    //         inventoryValue() {
+    //             return this.inventory.reduce((total, book) => {
+    //                 return total + book.price;
+    //             }, 0);
+
+    //         },
+    //         //根据标题返回价格
+    //         priceForTitle(title) {
+    //             return this.inventory.find((book) => {
+    //                 return book.title === title;
+    //             })
+    //                 .price;
+    //         }
+
+    //     }
+    // }
+    // const inventory = [
+    //     { title: "Vue", price: 10 },
+    //     { title: "Angular", price: 15 },
+    //     { title: "React", price: 13 }
+    // ];
+    // const bookShop = createBookShop(inventory);
+
+    // console.log(bookShop.inventoryValue());
+    // console.log(bookShop.priceForTitle("Angular"));
+
+
+
+
+    //JQuery 普通写法
+    function saveFile(url,data){
+        $.ajax({
+            method:"POST",
+            url:url,
+            data:data
+        });
     }
-    console.log(team.teamSummary());
+    const url = "http://fileupload.com";
+    const data = {color:"red"};
 
+    saveFile(url,data);
 
-    // es5_2
-    const team1 = {
-        members: ["Henry", "Elyse"],
-        teamName: "es5_2",
-        teamSummary: function () {
-            return this.members.map(function (member) {
-                return `${member}隶属于${this.teamName}小组`;
-            }.bind(this));
-        }
+    //JQuery 增强对象字面量
+    function saveFile(url, data) {
+        $.ajax({
+            url,
+            data,
+            method: "POST"
+        });
     }
-    console.log(team1.teamSummary());
+    const url = "http://fileupload.com";
+    const data = { color: "red" };
 
-
-
-    // es6
-    //使用箭头函数则不会出现undefined，会指向最接近的一个上级对象
-    const team3 = {
-        members: ["Henry", "Elyse"],
-        teamName: "6",
-        teamSummary: function () {
-            return this.members.map((member) => {
-                return `${member}隶属于${this.teamName}小组`;
-            });
-        }
-    }
-    console.log(team3.teamSummary());
+    saveFile(url, data);
