@@ -1,66 +1,61 @@
 /**
- * 函数参数默认值
- * 优化代码
- * 
+ * spread operator 展开运算符
+ * 更快，更便捷的操作数组
  * 
  */
 
-// function makeAjaxRequest(url,method){
-//     if(!method){
-//         method = "GET";
+
+// function addNumbers(numbers){
+//     return numbers.reduce((sum,number) => {
+//         return sum + number;
+//     },0)
+// }
+
+// const numbers = [1,2,3,4,5];
+// console.log(addNumbers(numbers));
+
+
+
+
+// function addNumbers(a,b,c,d,e) {
+//     var numbers = [a,b,c,d,e];
+//     return numbers.reduce((sum, number) => {
+//         return sum + number;
+//     }, 0)
+// }
+
+// console.log(addNumbers(1,2,3,4,5));
+
+
+
+// //展开运算符
+//     function addNumbers(...numbers) {
+//         return numbers.reduce((sum, number) => {
+//             return sum + number;
+//         }, 0)
 //     }
-//     return method;
-// }
+
+//     console.log(addNumbers(1, 2, 3, 4, 5));
 
 
-// function makeAjaxRequest(url,method = "GET"){
-//     return method;
-// }
+// //可用来替代push方法
+//     var defaultColors = ["red","greed"];
+//     var favoriteColors = ["orange","yellow"];
+    
+//     // //concat
+//     // defaultColors = defaultColors.concat(favoriteColors);
+//     // console.log(defaultColors);
 
-// console.log(makeAjaxRequest("google.com"));
-// console.log(makeAjaxRequest("google.com","POST"));
-
-
-
-
-
-// function User(id){
-//     this.id = id;
-// }
-// // console.log(new User(1));
-
-// function randomId(){
-//     return Math.round(Math.random() * 9);
-// }
-// // console.log(new User(randomId()));
-
-// function createAdminUser(user){
-//     user.admin = true;
-//     return user;
-// }
-
-// console.log(createAdminUser(new User(randomId())));
+//     //
+//     console.log([...defaultColors,...favoriteColors]);
 
 
 
-
-
-function User(id) {
-    this.id = id;
-}
-// console.log(new User(1));
-
-function randomId() {
-    return Math.round(Math.random() * 9);
-}
-// console.log(new User(randomId()));
-
-function createAdminUser(user = new User(randomId())) {
-    user.admin = true;
-    return user;
-}
-
-const user = new User(1);   
-
-console.log(createAdminUser(user))  //传递参数默认值则显示参数默认值
-console.log(createAdminUser());     //不传参数默认值则不显示
+// //练习
+//     function validateShoppingList(...items){
+//         if(items.indexOf("milk") < 0){
+//             return ["milk",...items];
+//         }
+//         return items;
+//     }
+//     console.log(validateShoppingList("orange","bread","eggs"));
