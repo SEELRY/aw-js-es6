@@ -1,147 +1,62 @@
+
+
 /**
- * 解构
- * 更快，更便捷
- * 
+ * Class
+ * 万物皆对象
  * 
  */
 
-
-
-
-    // var expense = {
-    //     type:"es6",
-    //     amount:"45"
-    // };
-
-    // // var type = expense.type;
-    // // var amount = expense.amount;
-    // // console.log(type,amount);
-
-    // const { type,amount } = expense;
-    // console.log(type,amount);
-
-
-
-
-
-    // //es5
-    // var saveFiled = {
-    //     extension:"jpg",
-    //     name:"girl",
-    //     size:14040
-    // };
-
-    // function fileSammary(file){
-    //     return `${file.name}.${file.extension}的总大小是${file.size}`;
+    // // es5
+    // function Car(options){
+    //     this.title = options.title;
     // }
-    // console.log(fileSammary(saveFiled));
 
-
-    // //es6
-    // var saveFiled = {
-    //     extension: "jpg",
-    //     name: "girl",
-    //     size: 14040
-    // };
-
-    // function fileSammary({name,extension,size}){
-    //     return `${name}.${extension}的总大小是${size}`;
+    // Car.prototype.drive = function(){
+    //     return this.title + " Vroom";
     // }
-    // console.log(fileSammary(saveFiled));
+
+    // const car = new Car({title:"BMW"});
+    // console.log(car.title);
+    // console.log(car.drive());
 
 
+    // //继承
+    // function Toyota(options){
+    //     Car.call(this,options);
+    //     this.color = options.color;
+    // }
+
+    // Toyota.prototype = Object.create(Car.prototype);
+    // Toyota.prototype.constructor = Toyota;
+
+    // const toyota = new Toyota({color:"red",title:"Focus"});
+    // console.log(toyota);
+    // console.log(toyota.title);
+    // console.log(toyota.drive());
 
 
+    // es6
+    class Car{
+        constructor(options){
+            this.title = options.title;
+        }
+        drive(){
+            return this.title + ' Vroom';
+        }
+    }
+    const car = new Car({title:"BMW"});
+    console.log(car);
+    console.log(car.drive());
 
-
-
-
-
-
-
-
-
-
-
-
-//解构（数组-对象）
-    // const names = ["Henry","Bucky","Emily"];
-    
-    // // //解构
-    // // const [name1,name2,name3] = names;
-    // // console.log(name1,name2,name3);
-
-    // // //返回数组个数
-    // // const {length} = names;
-    // // console.log(length);
-
-    // // //几个展开运算符
-    // // const [name,...rest] = names;
-    // // console.log(name);
-    // // console.log(rest);
-
-
-    // let a,b;
-    // [a,b] = [100,200];
-    // console.log(b);
-
-
-    // //对象数组
-    // const people = [
-    //     {name:"Henry",age:20},
-    //     {name:"Bucky",age:25},
-    //     {name:"Emily",age:30}
-    // ];
-
-    // // // es5
-    // // var age = people[0].age;
-    // // console.log(age);
-
-    // //es6
-    // // const [age] = people; //解构到第一个对象
-    // const [{age}] = people;
-
-    // console.log(age);
-
-
-
-
-
-
-//使用场景 将数组转化为对象
-    const points = [
-        [4,5],
-        [10,1],
-        [0,40]
-    ];
-
-    //期望数据格式
-    [
-        {x:4,y:5},
-        {x:10,y:1},
-        {x:0,y:40}
-    ]
-
-    // // es6
-    // let newPoints = points.map(pair => {
-    //     // const x = pair[0];
-    //     // const y = pair[1];
-    //     const [x,y] = pair;
-    //     return {x,y}
-    // });
-    // console.log(newPoints);
-
-
-    //es6   优化
-    let newPoints = points.map(([x,y]) => {
-        // return {x:x,y:y}
-        return {x,y}
-    });
-    console.log(newPoints);
-
-
-
-
+    class Toyota extends Car{
+        constructor(options){
+            super(options);
+            this.color = options.color;
+        }
+    }
+    const toyota = new Toyota({color:"red",title:"Focus"});
+    console.log(toyota);
+    console.log(toyota.drive());
 
 
 
