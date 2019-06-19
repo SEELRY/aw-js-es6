@@ -1,76 +1,108 @@
-
-
 /**
- * Class
- * 万物皆对象
+ * generator生成器
+ * 可以返回多次的函数
  * 
  */
 
-    // // es5
-    // function Car(options){
-    //     this.title = options.title;
+
+    // function* numbers(){
+    //     yield;
+    // }
+    // const gen = numbers();
+
+    // console.log(gen.next());
+    // console.log(gen.next());
+
+
+    //斐波那契数列
+    //[0,1,1,2,3,5,8...]
+
+    // // 方法1
+    // function fib(max){
+    //     var a = 0, b = 1 , arr = [0,1];
+    //     while(arr.length < max){
+    //         [a,b] = [b,a+b];
+    //         arr.push(b);
+    //     }
+    //     return arr;
+    // }
+    // console.log(fib(5));
+
+    // // 方法2
+    // function* fib(max){
+    //     var a = 0, b = 1, n=0;
+    //     while (n < max) {
+    //         yield a;
+    //         [a,b] = [b,a+b];
+    //         n++;
+    //     }
+    //     return;
+    // }
+    // // let f = fib(5);
+    
+    // // console.log(f.next());
+    // // console.log(f.next());
+    // // console.log(f.next());
+    // // console.log(f.next());
+    // // console.log(f.next());
+    // // console.log(f.next());
+
+    // for(var x of fib(10)){
+    //     console.log(x);
     // }
 
-    // Car.prototype.drive = function(){
-    //     return this.title + " Vroom";
+
+
+
+    
+
+
+//generator生成器的原理
+
+    // //迭代器还原生成器的结构
+    // function nameIterator(names){
+    //     let nextIndex = 0;
+    //     return{
+    //         next:function(){
+    //             return nextIndex < names.length ? 
+    //             {value:names[nextIndex++],done:false} :
+    //             {value:undefined, done:true}
+    //         }
+    //     }
+    // }
+    // const nameArray = ["Henry","Bucky","Emily"];
+
+    // const names = nameIterator(nameArray);
+    // console.log(names.next());
+    // console.log(names.next());
+    // console.log(names.next());
+    // console.log(names.next());
+
+
+    // //generator生成器
+    // function* sayNames(){
+    //     yield 'Henry';
+    //     yield 'Bucky';
+    //     yield 'Emily';
     // }
 
-    // const car = new Car({title:"BMW"});
-    // console.log(car.title);
-    // console.log(car.drive());
+    // const name = sayNames();
+    // console.log(name.next());
 
 
-    // //继承
-    // function Toyota(options){
-    //     Car.call(this,options);
-    //     this.color = options.color;
-    // }
+    //id自增（es 生成器）
+    function* createIds(){
+        let index = 1;
 
-    // Toyota.prototype = Object.create(Car.prototype);
-    // Toyota.prototype.constructor = Toyota;
-
-    // const toyota = new Toyota({color:"red",title:"Focus"});
-    // console.log(toyota);
-    // console.log(toyota.title);
-    // console.log(toyota.drive());
-
-
-    // es6
-    class Car{
-        constructor(options){
-            this.title = options.title;
-        }
-        drive(){
-            return this.title + ' Vroom';
+        while(true){
+            yield index++;
         }
     }
-    const car = new Car({title:"BMW"});
-    console.log(car);
-    console.log(car.drive());
+    const gen = createIds();
 
-    class Toyota extends Car{
-        constructor(options){
-            super(options);
-            this.color = options.color;
-        }
+    // console.log(gen.next().value);
+
+    for(var i=0; i<10; i++){
+        console.log(gen.next().value);
     }
-    const toyota = new Toyota({color:"red",title:"Focus"});
-    console.log(toyota);
-    console.log(toyota.drive());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
