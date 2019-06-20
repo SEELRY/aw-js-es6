@@ -1,108 +1,77 @@
-/**
- * generator生成器
- * 可以返回多次的函数
- * 
- */
-
-
-    // function* numbers(){
-    //     yield;
-    // }
-    // const gen = numbers();
-
-    // console.log(gen.next());
-    // console.log(gen.next());
-
-
-    //斐波那契数列
-    //[0,1,1,2,3,5,8...]
-
-    // // 方法1
-    // function fib(max){
-    //     var a = 0, b = 1 , arr = [0,1];
-    //     while(arr.length < max){
-    //         [a,b] = [b,a+b];
-    //         arr.push(b);
-    //     }
-    //     return arr;
-    // }
-    // console.log(fib(5));
-
-    // // 方法2
-    // function* fib(max){
-    //     var a = 0, b = 1, n=0;
-    //     while (n < max) {
-    //         yield a;
-    //         [a,b] = [b,a+b];
-    //         n++;
-    //     }
-    //     return;
-    // }
-    // // let f = fib(5);
-    
-    // // console.log(f.next());
-    // // console.log(f.next());
-    // // console.log(f.next());
-    // // console.log(f.next());
-    // // console.log(f.next());
-    // // console.log(f.next());
-
-    // for(var x of fib(10)){
-    //     console.log(x);
-    // }
-
-
-
-
-    
-
-
-//generator生成器的原理
-
-    // //迭代器还原生成器的结构
-    // function nameIterator(names){
-    //     let nextIndex = 0;
-    //     return{
-    //         next:function(){
-    //             return nextIndex < names.length ? 
-    //             {value:names[nextIndex++],done:false} :
-    //             {value:undefined, done:true}
-    //         }
-    //     }
-    // }
-    // const nameArray = ["Henry","Bucky","Emily"];
-
-    // const names = nameIterator(nameArray);
-    // console.log(names.next());
-    // console.log(names.next());
-    // console.log(names.next());
-    // console.log(names.next());
-
-
-    // //generator生成器
-    // function* sayNames(){
-    //     yield 'Henry';
-    //     yield 'Bucky';
-    //     yield 'Emily';
-    // }
-
-    // const name = sayNames();
-    // console.log(name.next());
-
-
-    //id自增（es 生成器）
-    function* createIds(){
-        let index = 1;
-
-        while(true){
-            yield index++;
-        }
+const data = [{
+        name: '米斯特吴',
+        age: 30,
+        gender: '男',
+        lookingfor: '女',
+        location: '北京',
+        image: 'https://randomuser.me/api/portraits/men/82.jpg'
+    },
+    {
+        name: '吴先生',
+        age: 32,
+        gender: '男',
+        lookingfor: '女',
+        location: '上海',
+        image: 'https://randomuser.me/api/portraits/men/83.jpg'
+    },
+    {
+        name: '李女士',
+        age: 24,
+        gender: '女',
+        lookingfor: '男',
+        location: '北京',
+        image: 'https://randomuser.me/api/portraits/women/83.jpg'
     }
-    const gen = createIds();
+];
 
-    // console.log(gen.next().value);
+// //迭代器的方法
+// function profileIterator(profiles){
+//     let nextIndex = 0;
+//     return{
+//         next:function(){
+//             return nextIndex < profiles.length ?
+//             {value:profiles[nextIndex++],done:false} : {value:undefined,done:true}
+//         }
+//     }
+// }
 
-    for(var i=0; i<10; i++){
-        console.log(gen.next().value);
+//generator生成器的方法
+function* profileIterator(){
+    yield data[0];
+    yield data[1];
+    yield data[2];
+}
+
+
+
+const profiles = profileIterator(data);
+
+// console.log(profiles.next());
+
+//先手动调用一次
+nextProfile();
+
+document.getElementById('next').addEventListener("click",nextProfile);
+
+function nextProfile(){
+    const currentProfile = profiles.next().value;
+    // console.log(currentProfile);
+    if(currentProfile !== undefined){
+        document.getElementById('profileDisplay').innerHTML = 
+        `
+        <ul class="list-group">
+            <li class="list-group-item">姓名：${currentProfile.name}</li>
+            <li class="list-group-item">年龄：${currentProfile.age}</li>
+            <li class="list-group-item">位置：${currentProfile.location}</li>
+            <li class="list-group-item">诉求：${currentProfile.gender}寻找的目标对象是${currentProfile.lookingfor}性朋友</li>
+        </ul>
+        `;
+        document.getElementById('imageDisplay').innerHTML = 
+        `
+        <img src="${currentProfile.image}" />
+        `;
+    }else{
+        window.location.reload();
     }
+}
 
