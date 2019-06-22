@@ -1,77 +1,57 @@
-const data = [{
-        name: '米斯特吴',
-        age: 30,
-        gender: '男',
-        lookingfor: '女',
-        location: '北京',
-        image: 'https://randomuser.me/api/portraits/men/82.jpg'
-    },
-    {
-        name: '吴先生',
-        age: 32,
-        gender: '男',
-        lookingfor: '女',
-        location: '上海',
-        image: 'https://randomuser.me/api/portraits/men/83.jpg'
-    },
-    {
-        name: '李女士',
-        age: 24,
-        gender: '女',
-        lookingfor: '男',
-        location: '北京',
-        image: 'https://randomuser.me/api/portraits/women/83.jpg'
-    }
-];
+/**
+ * 数据结构：map
+ * 键值对；与对象不同的是键和值可以是任何类型
+ */
 
-// //迭代器的方法
-// function profileIterator(profiles){
-//     let nextIndex = 0;
-//     return{
-//         next:function(){
-//             return nextIndex < profiles.length ?
-//             {value:profiles[nextIndex++],done:false} : {value:undefined,done:true}
-//         }
-//     }
-// }
 
-//generator生成器的方法
-function* profileIterator(){
-    yield data[0];
-    yield data[1];
-    yield data[2];
+const map1 = new Map();
+
+//设置key键
+const key1 = 'some string',
+      key2 = {},
+      key3 = function(){};
+
+//为key设置value值
+map1.set(key1,'Value of key1');
+map1.set(key2,'Value of key2');
+map1.set(key3,'Value of key3');
+
+//根据key获取对应的value值
+console.log(map1.get(key1));
+console.log(map1.get(key2));
+console.log(map1.get(key3));
+
+//获取对应的value数量
+console.log(map1.size);
+console.log(typeof map1);
+
+//for...of遍历map1中的key and value
+for(let [key,value] of map1){
+    console.log(`${key} = ${value}`);
 }
 
-
-
-const profiles = profileIterator(data);
-
-// console.log(profiles.next());
-
-//先手动调用一次
-nextProfile();
-
-document.getElementById('next').addEventListener("click",nextProfile);
-
-function nextProfile(){
-    const currentProfile = profiles.next().value;
-    // console.log(currentProfile);
-    if(currentProfile !== undefined){
-        document.getElementById('profileDisplay').innerHTML = 
-        `
-        <ul class="list-group">
-            <li class="list-group-item">姓名：${currentProfile.name}</li>
-            <li class="list-group-item">年龄：${currentProfile.age}</li>
-            <li class="list-group-item">位置：${currentProfile.location}</li>
-            <li class="list-group-item">诉求：${currentProfile.gender}寻找的目标对象是${currentProfile.lookingfor}性朋友</li>
-        </ul>
-        `;
-        document.getElementById('imageDisplay').innerHTML = 
-        `
-        <img src="${currentProfile.image}" />
-        `;
-    }else{
-        window.location.reload();
-    }
+//只要key值
+for(let key of map1.keys()){
+    console.log(key);
+}
+//只要value值
+for(let value of map1.values()){
+    console.log(value);
 }
 
+//forEach遍历map1
+map1.forEach((value,key) => {
+    console.log(`${key} = ${value}`);
+});
+
+//将map1转化为正常的数组
+const keyValueArray = Array.from(map1);
+console.log(keyValueArray);
+
+//将map1中的key转化为数组
+const keyArray = Array.from(map1.keys());
+console.log(keyArray);
+
+//将map1中的value值转换为数组
+const valueArray = Array.from(map1.values());
+console.log(valueArray);
