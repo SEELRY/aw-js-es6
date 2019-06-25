@@ -1,44 +1,54 @@
 /**
- * 构造函数：Promise
- * 钩子函数
+ * fetch
+ * 
  * 
  */
 
-// let promise = new Promise();
-// console.log(promise);   //报错，not a function
+document.getElementById('button1').addEventListener('click',getText);
+document.getElementById('button2').addEventListener('click',getJson);
+document.getElementById('button3').addEventListener('click',getExternal);
 
+//获取本地纯文本数据
+function getText(){
+    fetch("test.txt")
+        // .then(res => console.log(res))
+        // .then((res) => {res.text()})
+        // .then((data) => {console.log(data)});
 
+        .then((res) => res.text())
+        .then(data => {
+            console.log(data);
+            document.getElementById('output').innerHTML = data;
+        })
+        .catch(err => console.log(err));
+}
 
+//获取本地json数据
+function getJson(){
+    fetch("posts.json")
+        .then((res) => res.json())
+        .then(data => {
+            console.log(data);
+            let output = '';
+            data.forEach((post) => {
+                output += `<li>${post.title}</li>`;
+            });
+            document.getElementById('output').innerHTML = output;
+        })
+        .catch(err => console.log(err));
+}
 
-// let promise = new Promise((resolve,reject) => {
-//     resolve();
-//     // reject();
-// });
-// // console.log(promise);
-
-// promise
-// .then(() => {console.log("成功，没有任何问题")})
-// .then(() => {console.log("可以，无限调用多个then方法")})
-// .catch(() => {console.log("出现错误！")});
-
-
-
-
-/**
- * fetch方法
- */
-
-// console.log(window);
-// console.log(fetch);
-
-// http://jsonplaceholder.typicode.com/
-let url = "http://jsonplaceholder.typicode.com/posts";
-
-// console.log(fetch(url));
-fetch(url)
-    // .then(data => {console.log(data)});
-    .then(response => response.json())  //解析成json
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-
-
+//请求网络api
+function getExternal(){
+    fetch("http://api.github.com/users")
+        .then((res) => res.json())
+        .then(data => {
+            console.log(data);
+            let output = '';
+            data.forEach((user) => {
+                output += `<li>${user.login}</li>`;
+            });
+            document.getElementById('output').innerHTML = output;
+        })
+        .catch(err => console.log(err));
+}
