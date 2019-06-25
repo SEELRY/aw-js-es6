@@ -1,54 +1,31 @@
-/**
- * fetch
- * 
- * 
- */
+const http = new EasyHttp;
 
-document.getElementById('button1').addEventListener('click',getText);
-document.getElementById('button2').addEventListener('click',getJson);
-document.getElementById('button3').addEventListener('click',getExternal);
+// //请求数据
+// http.get("http://jsonplaceholder.typicode.com/users")
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch(err => console.log(err))
 
-//获取本地纯文本数据
-function getText(){
-    fetch("test.txt")
-        // .then(res => console.log(res))
-        // .then((res) => {res.text()})
-        // .then((data) => {console.log(data)});
 
-        .then((res) => res.text())
-        .then(data => {
-            console.log(data);
-            document.getElementById('output').innerHTML = data;
-        })
-        .catch(err => console.log(err));
-}
+//传输数据
+const dataValue = {
+name:"Henry",
+username:"Arthur",
+email:"wang@xunnn.com"
+};
 
-//获取本地json数据
-function getJson(){
-    fetch("posts.json")
-        .then((res) => res.json())
-        .then(data => {
-            console.log(data);
-            let output = '';
-            data.forEach((post) => {
-                output += `<li>${post.title}</li>`;
-            });
-            document.getElementById('output').innerHTML = output;
-        })
-        .catch(err => console.log(err));
-}
+// //post
+// http.post("http://jsonplaceholder.typicode.com/users",dataValue)
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err));
 
-//请求网络api
-function getExternal(){
-    fetch("http://api.github.com/users")
-        .then((res) => res.json())
-        .then(data => {
-            console.log(data);
-            let output = '';
-            data.forEach((user) => {
-                output += `<li>${user.login}</li>`;
-            });
-            document.getElementById('output').innerHTML = output;
-        })
-        .catch(err => console.log(err));
-}
+// //update user
+// http.put("http://jsonplaceholder.typicode.com/users/2", dataValue)
+//     .then(dataValue => console.log(dataValue))
+//     .catch(err => console.log(err));
+
+//delete user
+http.delete("http://jsonplaceholder.typicode.com/users/2")
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
