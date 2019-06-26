@@ -1,31 +1,50 @@
-const http = new EasyHttp;
+/**
+ * async & await
+ * 
+ * 
+ */
 
-// //请求数据
-// http.get("http://jsonplaceholder.typicode.com/users")
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch(err => console.log(err))
+// async function myFunc(){
+//     return "Hello World!";
+// }
+
+// console.log(myFunc());
+
+// myFunc().then(data => console.log(data));
 
 
-//传输数据
-const dataValue = {
-name:"Henry",
-username:"Arthur",
-email:"wang@xunnn.com"
-};
 
-// //post
-// http.post("http://jsonplaceholder.typicode.com/users",dataValue)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err));
 
-// //update user
-// http.put("http://jsonplaceholder.typicode.com/users/2", dataValue)
-//     .then(dataValue => console.log(dataValue))
-//     .catch(err => console.log(err));
 
-//delete user
-http.delete("http://jsonplaceholder.typicode.com/users/2")
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+
+// async function myFunc() {
+//     const promise = new Promise((resolve,reject) => {
+//         setTimeout(() => resolve('Hello World!'),2000);
+//     });
+
+//     //错误信息
+//     const error = true;
+//     if(!error){
+//         //等待resolve执行完毕之后，才会执行
+//         const res = await promise;
+//         return res;
+//     }else{
+//         await Promise.reject(new Error("error:报错了！"))
+//     }
+// }
+// myFunc()
+// .then(data => console.log(data))
+// .catch(err => console.log(err));
+
+
+
+
+
+
+//请求数据
+async function getUsers(){
+    const response = await fetch("http://jsonplaceholder.typicode.com/users");
+    const data = await response.json();
+    return data;
+}
+getUsers().then(users => console.log(users));
